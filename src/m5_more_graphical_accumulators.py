@@ -145,28 +145,37 @@ def run_test_draw_circles_from_rectangle():
     #   Follow the same form as the example in a previous problem.
     ####################################################################
     # ------------------------------------------------------------------
- # Test 1:
+    # Test 1:
 
-    window1 = rg.RoseWindow(525, 300)
-    corner1 = (10, 10)
-    corner2 = (20, 20)
-    corner3 = (10, 30)
-    corner4 = (20, 30)
-    rectangle = rg.Rectangle(rg.Point((corner1, corner2), (corner3, corner4)))
-
-
-    draw_circles_from_rectangle(4, rectangle, window1)
+    window1 = rg.RoseWindow(720, 500)
+    corner1 = rg.Point(400, 250)
+    corner2 = rg.Point(440, 325)
+    rectangle = rg.Rectangle(corner1, corner2)
+    rectangle.fill_color = 'green'
+    rectangle.outline_color = 'black'
+    rectangle.outline_thickness = 5
+    draw_circles_from_rectangle(4, 5, rectangle, window1)
 
     # Test 2:
-    rectangle = rg.Rectangle(rg.Point(50, 50))
-    draw_circles_from_rectangle(14, rectangle, window1)
+    corner1 = rg.Point(600, 400)
+    corner2 = rg.Point(500, 450)
+    rectangle = rg.Rectangle(corner1, corner2)
+    rectangle.fill_color = 'blue'
+    rectangle.outline_color = 'red'
+    rectangle.outline_thickness = 3
+    draw_circles_from_rectangle(8, 3, rectangle, window1)
     window1.close_on_mouse_click()
 
 
     # Test 3:
-    window2 = rg.RoseWindow(525, 300)
-    rectangle = rg.Rectangle(rg.Point(75, 75))
-    draw_circles_from_rectangle(8, rectangle, window2)
+    window2 = rg.RoseWindow(620, 380)
+    corner1 = rg.Point(375, 330)
+    corner2 = rg.Point(350, 280)
+    rectangle = rg.Rectangle(corner1, corner2)
+    rectangle.fill_color = 'yellow'
+    rectangle.outline_color = 'brown'
+    rectangle.outline_thickness = 5
+    draw_circles_from_rectangle(6, 10, rectangle, window2)
 
     window2.close_on_mouse_click()
 
@@ -223,8 +232,10 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
     #          ** FIRST DO A CONCRETE EXAMPLE BY HAND! **
     ####################################################################
     # ------------------------------------------------------------------
+    rectangle.attach_to(window)
+    
 
-
+    window.render()
 def run_test_draw_lines_from_rectangles():
     """ Tests the   draw_lines_from_rectangles  function. """
     print()
