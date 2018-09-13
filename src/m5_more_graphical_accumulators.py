@@ -133,7 +133,7 @@ def run_test_draw_circles_from_rectangle():
     print('--------------------------------------------------')
 
     # ------------------------------------------------------------------
-    # TODO: 3. Implement this TEST function.
+    # DONE: 3. Implement this TEST function.
     #   It TESTS the  draw_circles_from_rectangle  function
     #   defined below.  Include at least **   3   ** tests, of which
     #      ***  at least TWO tests are on ONE window and
@@ -148,36 +148,31 @@ def run_test_draw_circles_from_rectangle():
     # Test 1:
 
     window1 = rg.RoseWindow(720, 500)
-    corner1 = rg.Point(400, 250)
-    corner2 = rg.Point(440, 325)
-    rectangle = rg.Rectangle(corner1, corner2)
+    rectangle = rg.Rectangle(rg.Point(400, 250), rg.Point(440, 325) )
     rectangle.fill_color = 'green'
     rectangle.outline_color = 'black'
     rectangle.outline_thickness = 5
     draw_circles_from_rectangle(4, 5, rectangle, window1)
 
     # Test 2:
-    corner1 = rg.Point(600, 400)
-    corner2 = rg.Point(500, 450)
-    rectangle = rg.Rectangle(corner1, corner2)
-    rectangle.fill_color = 'blue'
-    rectangle.outline_color = 'red'
-    rectangle.outline_thickness = 3
-    draw_circles_from_rectangle(8, 3, rectangle, window1)
+
+    # rectangle = rg.Rectangle(rg.Point(600, 400), rg.Point(500, 450))
+    # rectangle.fill_color = 'blue'
+    # rectangle.outline_color = 'red'
+    # rectangle.outline_thickness = 3
+    # draw_circles_from_rectangle(8, 3, rectangle, window1)
     window1.close_on_mouse_click()
-
-
-    # Test 3:
-    window2 = rg.RoseWindow(620, 380)
-    corner1 = rg.Point(375, 330)
-    corner2 = rg.Point(350, 280)
-    rectangle = rg.Rectangle(corner1, corner2)
-    rectangle.fill_color = 'yellow'
-    rectangle.outline_color = 'brown'
-    rectangle.outline_thickness = 5
-    draw_circles_from_rectangle(6, 10, rectangle, window2)
-
-    window2.close_on_mouse_click()
+    #
+    #
+    # # Test 3:
+    # window2 = rg.RoseWindow(620, 380)
+    # rectangle = rg.Rectangle(rg.Point(375, 330), rg.Point(350, 280))
+    # rectangle.fill_color = 'yellow'
+    # rectangle.outline_color = 'brown'
+    # rectangle.outline_thickness = 5
+    # draw_circles_from_rectangle(6, 10, rectangle, window2)
+    #
+    # window2.close_on_mouse_click()
 
 def draw_circles_from_rectangle(m, n, rectangle, window):
     """
@@ -233,7 +228,36 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
     ####################################################################
     # ------------------------------------------------------------------
     rectangle.attach_to(window)
-    
+    pointx = ((rectangle.corner_2.x + rectangle.corner_1.x)/2) - ((rectangle.corner_2.y - rectangle.corner_1.y)/2)
+    pointy = (rectangle.corner_2.y + rectangle.corner_1.y)/2
+    center = rg.Point((pointx - (rectangle.corner_2.x - rectangle.corner_1.x)/2), pointy)
+    radius = (rectangle.corner_2.x - rectangle.corner_1.x)
+    circle1 = rg.Circle(center, radius)
+    for k in range(n):
+        pointx = (((rectangle.corner_2.x + rectangle.corner_1.x) / 2) - \
+                 ((rectangle.corner_2.y - rectangle.corner_1.y) / 2)) - (pointy / 3.75) * k
+        pointy = (rectangle.corner_2.y + rectangle.corner_1.y) / 2
+        center = rg.Point((pointx - (rectangle.corner_2.x - rectangle.corner_1.x) / 2), pointy)
+        radius = (rectangle.corner_2.x - rectangle.corner_1.x)
+        circle2 = rg.Circle(center, radius)
+        circle2.attach_to(window)
+
+    pointx = ((rectangle.corner_2.x + rectangle.corner_1.x) / 2) - ((rectangle.corner_2.y - rectangle.corner_1.y) / 2)
+    pointy = (rectangle.corner_2.y + rectangle.corner_1.y) / 2
+    center = rg.Point(pointy, (pointy - (rectangle.corner_2.y - rectangle.corner_1.y) / 2))
+    radius = (rectangle.corner_2.x - rectangle.corner_1.x) / 2
+    circle3 = rg.Circle(center, radius)
+    for k in range(n):
+        pointx = (((rectangle.corner_2.x + rectangle.corner_1.x) / 2) - \
+                  ((rectangle.corner_2.y - rectangle.corner_1.y) / 2)) - (pointy / 3.75) * k
+        pointy = (rectangle.corner_2.y + rectangle.corner_1.y) / 2
+        center = rg.Point((pointx - (rectangle.corner_2.y - rectangle.corner_1.y) / 2), 420)
+        radius = (rectangle.corner_2.x - rectangle.corner_1.x) / 2
+        circle4 = rg.Circle(center, radius)
+        circle4.attach_to(window)
+
+    circle1.attach_to(window)
+    circle3.attach_to(window)
 
     window.render()
 def run_test_draw_lines_from_rectangles():
@@ -326,8 +350,10 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
     #          ** FIRST DO A CONCRETE EXAMPLE BY HAND! **
     ####################################################################
     # ------------------------------------------------------------------
+    rectangle1.attach_to(window)
+    rectangle2.attach_to(window)
 
-
+    window.render()
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------
